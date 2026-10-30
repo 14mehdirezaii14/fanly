@@ -98,13 +98,7 @@ export function ProductCatalog({
   )
 
   return (
-    <Sheet
-      open={filterOpen}
-      onOpenChange={(open) => {
-        console.log("[v0] filter sheet state", open)
-        setFilterOpen(open)
-      }}
-    >
+    <Sheet open={filterOpen} onOpenChange={setFilterOpen}>
       <section id="products" aria-labelledby="products-title" className="scroll-mt-24">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
@@ -159,11 +153,7 @@ export function ProductCatalog({
               aria-haspopup="dialog"
               aria-expanded={filterOpen}
               aria-controls="filters-drawer"
-              data-testid="mobile-filter-trigger"
-              onClick={() => {
-                console.log("[v0] mobile filter button clicked")
-                setFilterOpen(true)
-              }}
+              onClick={() => setFilterOpen(true)}
             >
               <SlidersHorizontal data-icon="inline-start" aria-hidden="true" />
               Filters

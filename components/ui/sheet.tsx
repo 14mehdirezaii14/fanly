@@ -23,6 +23,10 @@ function Sheet(props: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="sheet" {...props} />
 }
 
+function SheetTrigger(props: DialogPrimitive.Trigger.Props) {
+  return <DialogPrimitive.Trigger data-slot="sheet-trigger" {...props} />
+}
+
 function SheetContent({
   side = "right",
   className,
@@ -105,6 +109,7 @@ function SheetDescription({
 
 export {
   Sheet,
+  SheetTrigger,
   SheetContent,
   SheetDescription,
   SheetFooter,

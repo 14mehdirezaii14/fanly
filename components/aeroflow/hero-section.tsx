@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { formatPrice, products } from "@/components/aeroflow/products"
 
 export function HeroSection() {
@@ -37,14 +37,16 @@ export function HeroSection() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Button
-              render={<a href="#products" />}
-              size="lg"
-              className="h-11 rounded-xl px-5 font-semibold"
+            <a
+              href="#products"
+              className={buttonVariants({
+                size: "lg",
+                className: "h-11 rounded-xl px-5 font-semibold",
+              })}
             >
               Shop performance fans
               <ArrowRight data-icon="inline-end" aria-hidden="true" />
-            </Button>
+            </a>
             <a
               href="#engineering"
               className="inline-flex items-center gap-1.5 rounded-lg px-1 py-2 text-sm font-medium text-background/75 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

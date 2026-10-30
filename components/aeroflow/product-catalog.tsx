@@ -98,7 +98,14 @@ export function ProductCatalog({
   )
 
   return (
-    <section id="products" aria-labelledby="products-title" className="scroll-mt-24">
+    <Sheet
+      open={filterOpen}
+      onOpenChange={(open) => {
+        console.log("[v0] filter sheet state", open)
+        setFilterOpen(open)
+      }}
+    >
+      <section id="products" aria-labelledby="products-title" className="scroll-mt-24">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -148,8 +155,15 @@ export function ProductCatalog({
               type="button"
               variant="outline"
               className="h-10 flex-1 gap-2 rounded-xl px-3 lg:hidden"
-              onClick={() => setFilterOpen(true)}
               aria-label={`Open filters${activeFilterCount ? `, ${activeFilterCount} active` : ""}`}
+              aria-haspopup="dialog"
+              aria-expanded={filterOpen}
+              aria-controls="filters-drawer"
+              data-testid="mobile-filter-trigger"
+              onClick={() => {
+                console.log("[v0] mobile filter button clicked")
+                setFilterOpen(true)
+              }}
             >
               <SlidersHorizontal data-icon="inline-start" aria-hidden="true" />
               Filters
@@ -248,8 +262,7 @@ export function ProductCatalog({
         </div>
       </div>
 
-      <Sheet open={filterOpen} onOpenChange={setFilterOpen}>
-        <SheetContent side="right" className="w-[min(100vw,25rem)] max-w-none gap-5 overflow-y-auto px-5 py-6 sm:px-6">
+      <SheetContent id="filters-drawer" side="right" className="w-[min(100vw,25rem)] max-w-none gap-5 overflow-y-auto px-5 py-6 sm:px-6">
           <SheetHeader className="border-b border-border/70 pb-4 pr-10">
             <SheetTitle>Refine your search</SheetTitle>
             <SheetDescription>
@@ -271,7 +284,7 @@ export function ProductCatalog({
             />
           </div>
         </SheetContent>
-      </Sheet>
-    </section>
+      </section>
+    </Sheet>
   )
 }
